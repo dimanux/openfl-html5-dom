@@ -175,7 +175,7 @@ class Graphics {
 		
 		mFilling = true;
 		mSolidGradient = null;
-		__expandStandardExtent (bitmap.width, bitmap.height);
+		//__expandStandardExtent (bitmap.width, bitmap.height);
 		
 		mBitmap = { texture_buffer: bitmap.handle (), matrix: matrix == null ? matrix : matrix.clone (), flags :(repeat ? BMP_REPEAT : 0) | (smooth ? BMP_SMOOTH : 0 ) };
 		
