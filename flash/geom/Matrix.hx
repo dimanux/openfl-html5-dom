@@ -32,6 +32,30 @@ class Matrix {
 	}
 	
 	
+	public function setTo (a:Float, b:Float, c:Float, d:Float, tx:Float, ty:Float):Void {
+		
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.d = d;
+		this.tx = tx;
+		this.ty = ty;
+		
+	}
+	
+	
+	public function copyFrom (other:Matrix):Void {
+		
+		this.a = other.a;
+		this.b = other.b;
+		this.c = other.c;
+		this.d = other.d;
+		this.tx = other.tx;
+		this.ty = other.ty;
+		
+	}
+	
+	
 	private inline function cleanValues ():Void {
 		
 		a = Math.round (a * 1000) / 1000;
