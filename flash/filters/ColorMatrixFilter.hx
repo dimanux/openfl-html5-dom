@@ -30,7 +30,7 @@ class ColorMatrixFilter extends BitmapFilter {
 	}
 	
 	
-	override public function __applyFilter (surface:CanvasElement, rect:Rectangle = null, refreshCache:Bool = false):Void {
+	public function __applyFilter (surface:CanvasElement, rect:Rectangle = null, refreshCache:Bool = false):Void {
 		
 		if (rect == null) rect = new Rectangle (0, 0, surface.width, surface.height);
 		var ctx:CanvasRenderingContext2D = surface.getContext ('2d');

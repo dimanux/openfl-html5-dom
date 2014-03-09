@@ -114,6 +114,17 @@ class Matrix {
 	}
 	
 	
+	public function createBox (scaleX:Float, scaleY:Float, rotation:Float = 0, tx:Float = 0, ty:Float = 0):Void {
+		
+		a = scaleX;
+		d = scaleY;
+		b = rotation;
+		this.tx = tx;
+		this.ty = ty;
+		
+	}
+	
+	
 	public function createGradientBox (in_width:Float, in_height:Float, rotation:Float = 0, in_tx:Float = 0, in_ty:Float = 0):Void {
 		
 		a = in_width / 1638.4;

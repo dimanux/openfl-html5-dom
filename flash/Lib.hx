@@ -278,7 +278,7 @@ class Lib {
 		
 		// This ensures that a canvas hitTest hits the root movieclip
 		
-		Lib.current.graphics.beginFill (__getStage ().backgroundColor);
+		Lib.current.graphics.beginFill (__getStage ().backgroundColor, 0);
 		Lib.current.graphics.drawRect (0, 0, width, height);
 		__setSurfaceId (Lib.current.graphics.__surface, "Root MovieClip");
 		__getStage ().__updateNextWake ();

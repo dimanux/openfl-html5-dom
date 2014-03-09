@@ -8,6 +8,7 @@ import js.html.CanvasElement;
 import js.html.CanvasRenderingContext2D;
 import js.html.Uint8ClampedArray;
 import flash.Vector;
+import flash.Lib;
 
 
 class BlurFilter extends BitmapFilter {
@@ -34,7 +35,7 @@ class BlurFilter extends BitmapFilter {
 		MAX_BLUR_HEIGHT = Lib.current.stage.stageHeight;
 		
 		quality = ( inQuality == null ? 1 : inQuality);
-		var bgColor = Lib.current.stage.backgroundColor;
+		var bgColor = Lib.current.stage.color;
 		__bG = [(bgColor & 0xFF0000) >>> 16, (bgColor & 0x00FF00) >>> 8, (bgColor & 0x0000FF)];
 		
 	}
@@ -54,7 +55,7 @@ class BlurFilter extends BitmapFilter {
 	}
 	
 	
-	override public function __preFilter (surface:CanvasElement):Void {
+	public override function __preFilter (surface:CanvasElement):Void {
 		
 		var ctx:CanvasRenderingContext2D = surface.getContext ('2d');
 		__kernel = new Vector ();
@@ -160,7 +161,7 @@ class BlurFilter extends BitmapFilter {
 	}
 	
 	
-	override public function __applyFilter (surface:CanvasElement, rect:Rectangle = null, refreshCache:Bool = false):Void {
+	public override function __applyFilter (surface:CanvasElement, rect:Rectangle = null, refreshCache:Bool = false):Void {
 		
 		if (surface.width > 0 && surface.height > 0) {
 			

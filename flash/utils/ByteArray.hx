@@ -77,7 +77,7 @@ class ByteArray implements ArrayAccess<Int> {
 	}
 	
 	
-	public function readBytes (bytes:ByteArray, ?offset:Int, ?length:Int):Void {
+	public function readBytes (bytes:ByteArray, ?offset:Int = 0, ?length:Int = 0):Void {
 		
 		if (offset < 0 || length < 0) {
 			
@@ -85,8 +85,7 @@ class ByteArray implements ArrayAccess<Int> {
 			
 		}
 		
-		if (offset == null) offset = 0;
-		if (length == null) length = this.length;
+		if (length == 0) length = this.length;
 		
 		bytes.ensureWrite (offset + length);
 		
@@ -266,9 +265,11 @@ class ByteArray implements ArrayAccess<Int> {
 	}
 	
 	
-	public function writeBytes (bytes:ByteArray, ?offset:UInt, ?length:UInt):Void {
+	public function writeBytes (bytes:ByteArray, ?offset:UInt = 0, ?length:UInt = 0):Void {
 		
 		if (offset < 0 || length < 0) throw new IOError ("Write error - Out of bounds");
+
+		if( length == 0 ) length = bytes.length;
 		
 		ensureWrite (this.position + length);
 		byteView.set (bytes.byteView.subarray (offset, offset + length), this.position);

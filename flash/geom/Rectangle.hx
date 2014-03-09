@@ -194,6 +194,16 @@ class Rectangle {
 	}
 	
 	
+	public function setTo (xa:Float, ya:Float, widtha:Float, heighta:Float):Void {
+		
+		x = xa;
+		y = ya;
+		width = widtha;
+		height = heighta;
+		
+	}
+	
+	
 	public function transform (m:Matrix):Rectangle {
 		
 		var tx0 = m.a * x + m.c * y;
