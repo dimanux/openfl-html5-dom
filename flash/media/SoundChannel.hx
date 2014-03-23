@@ -78,7 +78,7 @@ class SoundChannel extends EventDispatcher {
 	
 	
 	private function set_soundTransform (value:SoundTransform):SoundTransform {
-		if (__loop) trace(value.volume);
+		
 		__soundTransform.volume = value.volume;
 		__soundTransform.pan = value.pan;
 		
