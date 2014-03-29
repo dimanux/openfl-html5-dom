@@ -770,6 +770,11 @@ class Graphics {
 		mPenX = inX;
 		mPenY = inY;
 		
+		if (__extent.isEmpty())
+		{
+			__extent.x = inX;
+			__extent.y = inY;
+		}
 		__expandStandardExtent (inX, inY);
 		
 		if (!mFilling) {
@@ -791,8 +796,8 @@ class Graphics {
 		
 		if (Reflect.field (__surface, "getContext") != null) {
 			
-			var width = Math.ceil ((__extentWithFilters.width - __extentWithFilters.x) * sx);
-			var height = Math.ceil ((__extentWithFilters.height - __extentWithFilters.y) * sy);
+			var width = Math.ceil ((__extentWithFilters.width/* - __extentWithFilters.x*/) * sx);
+			var height = Math.ceil ((__extentWithFilters.height/* - __extentWithFilters.y*/) * sy);
 			
 			// prevent allocating too large canvas sizes
 			if (width <= __MAX_DIM && height <= __MAX_DIM) {
@@ -995,22 +1000,10 @@ class Graphics {
 	
 	private function __expandFilteredExtent (x:Float, y:Float):Void {
 		
-		var maxX, minX, maxY, minY;
-		
-		minX = __extent.x;
-		minY = __extent.y;
-		maxX = __extent.width + minX;
-		maxY = __extent.height + minY;
-		
-		maxX = x > maxX ? x : maxX;
-		minX = x < minX ? x : minX;
-		maxY = y > maxY ? y : maxY;
-		minY = y < minY ? y : minY;
-		
-		__extentWithFilters.x = minX;
-		__extentWithFilters.y = minY;
-		__extentWithFilters.width = maxX - minX;
-		__extentWithFilters.height = maxY - minY;
+		__extentWithFilters.x = __extent.x - x;
+		__extentWithFilters.y = __extent.y - y;
+		__extentWithFilters.width = __extent.width + 2 * x;
+		__extentWithFilters.height = __extent.height + 2 * y;
 		
 	}
 	
@@ -1104,7 +1097,7 @@ class Graphics {
 			
 		}
 		
-		__expandFilteredExtent ( - (padding * sx) / 2, - (padding * sy) / 2);
+		__expandFilteredExtent ( (padding * sx) / 2, (padding * sy) / 2);
 		
 		if (__clearNextCycle) {
 			
@@ -1114,7 +1107,7 @@ class Graphics {
 			
 		} 
 		
-		if (__extentWithFilters.width - __extentWithFilters.x > __surface.width || __extentWithFilters.height - __extentWithFilters.y > __surface.height) {
+		if (__extentWithFilters.width/* - __extentWithFilters.x*/ > __surface.width || __extentWithFilters.height/* - __extentWithFilters.y*/ > __surface.height) {
 			
 			__adjustSurface (sx, sy);
 			
