@@ -30,6 +30,8 @@ class SoundChannel extends EventDispatcher {
 		__soundTransform = soundTransform;
 		__startTime = startTime;
 		
+		if (__loop) howl.loop (true);
+		
 		__howl = howl;
 		__howl.on ("end", howl_onEnd);
 		__howl.play (null, howl_onPlay);
