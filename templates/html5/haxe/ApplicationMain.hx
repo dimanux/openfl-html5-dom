@@ -147,7 +147,7 @@ class ApplicationMain {
 }
 
 @:build(DocumentClass.build())
-class DocumentClass extends ::APP_MAIN:: {}
+@:keep class DocumentClass extends ::APP_MAIN:: {}
 
 #else
 
